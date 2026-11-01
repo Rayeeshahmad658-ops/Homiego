@@ -1,0 +1,592 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Homiego | Find Your Perfect Student Home</title>
+
+    <link rel="stylesheet" href="updated.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header class="navbar">
+
+    <a href="#home" class="logo">
+        <i class="fa-solid fa-house-user"></i>
+        Homiego <span></span>
+    </a>
+
+    <nav id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#rooms">Find Rooms</a>
+        <a href="dhaba.html">Restaurants &amp; Dhaba</a>
+        <a href="#about">About</a>
+        <a href="#feedback">Feedback</a>
+    </nav>
+
+    <div class="nav-actions" id="navActions">
+        <button class="login-btn" onclick="showAuth('login')">Login</button>
+        <button class="primary-btn" onclick="showAuth('register')">Register</button>
+    </div>
+
+    <button class="mobile-menu" onclick="toggleMenu()" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+</header>
+
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="eyebrow">
+            <i class="fa-solid fa-location-dot"></i>
+            FIND YOUR NEXT HOME
+        </span>
+
+        <h1>
+            Your College Life.<br>
+            Your Perfect <span>Stay.</span>
+        </h1>
+
+        <p>
+            Discover comfortable, affordable and verified student
+            accommodation near your university or Coching center.
+        </p>
+
+        <div class="hero-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search university, city or locality..."
+                onkeydown="if(event.key === 'Enter') searchRooms()"
+            >
+
+            <button onclick="searchRooms()">Search</button>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div>
+                <h3 id="totalListings">0</h3>
+                <span>Properties</span>
+            </div>
+
+            <div>
+                <h3 id="availableRooms">0</h3>
+                <span>Vacant Rooms</span>
+            </div>
+
+            <div>
+                <h3>24/7</h3>
+                <span>Easy Access</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-visual">
+
+        <div class="hero-image-main">
+            <img
+                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1000"
+                alt="Modern student accommodation"
+            >
+        </div>
+
+        <div class="floating-card">
+            <div class="floating-icon">
+                <i class="fa-solid fa-house"></i>
+            </div>
+            <div>
+                <strong>Find your happy place</strong>
+                <p>Comfort meets affordability</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AUTHENTICATION MODAL -->
+<div class="auth-overlay hidden" id="authSection">
+
+    <div class="auth-card">
+
+        <button class="close-btn" onclick="closeAuth()">×</button>
+
+        <div class="auth-logo">
+            <i class="fa-solid fa-house-user"></i>
+            StayFinder
+        </div>
+
+        <h2 id="authTitle">Welcome Back!</h2>
+
+        <p class="auth-subtitle" id="authSubtitle">
+            Login to discover your perfect accommodation.
+        </p>
+
+        <div class="role-select">
+
+            <button class="role active" id="studentRole"
+                onclick="setRole('student')">
+                <i class="fa-solid fa-user-graduate"></i>
+                Student
+            </button>
+
+            <button class="role" id="ownerRole"
+                onclick="setRole('owner')">
+                <i class="fa-solid fa-house"></i>
+                Room Owner
+            </button>
+
+        </div>
+
+        <form id="authForm">
+
+            <div id="nameField" class="hidden">
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+
+            <div id="mobileField" class="hidden">
+                <label>Mobile Number</label>
+                <input type="tel" id="mobile"
+                    placeholder="10-digit mobile number"
+                    maxlength="10">
+            </div>
+
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="Enter email address">
+
+            <label id="passwordLabel">Password</label>
+
+            <div class="password-wrapper">
+                <input type="password" id="password"
+                    placeholder="Enter password" required minlength="6">
+
+                <button type="button" onclick="togglePassword()">
+                    <i class="fa-solid fa-eye" id="passwordEye"></i>
+                </button>
+            </div>
+
+            <button type="submit" class="primary-btn full-btn" id="authSubmit">
+                Login
+            </button>
+
+        </form>
+
+        <p class="switch-text">
+            <span id="switchMessage">Don't have an account?</span>
+            <a href="#" id="switchAuth" onclick="toggleAuth(event)">Register</a>
+        </p>
+
+        <div class="auth-help">
+            <i class="fa-solid fa-circle-question"></i>
+            Need help? Contact support@stayfinder.com
+        </div>
+
+        <p id="authMessage"></p>
+
+    </div>
+
+</div>
+
+
+<!-- STUDENT DASHBOARD -->
+<section id="studentDashboard" class="dashboard hidden">
+
+    <div class="dashboard-heading">
+        <div>
+            <span class="eyebrow">STUDENT PANEL</span>
+            <h2>Welcome, <span id="studentName"></span>!</h2>
+            <p>Find your favourite accommodation.</p>
+        </div>
+
+        <button class="outline-btn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <i class="fa-solid fa-heart"></i>
+            <h3 id="favoriteCount">0</h3>
+            <p>Saved Properties</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-house"></i>
+            <h3 id="studentRoomCount">0</h3>
+            <p>Available Properties</p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- OWNER DASHBOARD -->
+<section id="ownerDashboard" class="dashboard hidden">
+
+    <div class="dashboard-heading">
+        <div>
+            <span class="eyebrow">OWNER PANEL</span>
+            <h2>Welcome, <span id="ownerName"></span>!</h2>
+            <p>Manage your properties and room availability.</p>
+        </div>
+
+        <button class="outline-btn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+
+    <div class="dashboard-stats">
+
+        <div class="stat-card">
+            <i class="fa-solid fa-building"></i>
+            <h3 id="ownerPropertyCount">0</h3>
+            <p>My Properties</p>
+        </div>
+
+        <div class="stat-card">
+            <i class="fa-solid fa-door-open"></i>
+            <h3 id="ownerVacantCount">0</h3>
+            <p>Vacant Rooms</p>
+        </div>
+
+    </div>
+
+    <div class="owner-add-card">
+
+        <h3><i class="fa-solid fa-plus-circle"></i> Add New Property</h3>
+
+        <form id="propertyForm" class="property-form">
+
+            <input id="propertyTitle" placeholder="Building / PG Name" required>
+
+            <input id="propertyLocation" placeholder="City / Locality" required>
+
+            <input id="propertyUniversity" placeholder="Nearby University" required>
+
+            <select id="propertyType" required>
+                <option value="PG">PG</option>
+                <option value="Hostel">Hostel</option>
+                <option value="2BHK Flat">2BHK Flat</option>
+                <option value="3BHK Flat">3BHK Flat</option>
+            </select>
+
+            <input id="propertyRent" type="number" min="1"
+                placeholder="Monthly Rent (₹)" required>
+
+            <select id="propertyBed">
+                <option value="Single">Single Bed</option>
+                <option value="Double">Double Bed</option>
+            </select>
+
+            <select id="propertyAC">
+                <option value="AC">AC</option>
+                <option value="Non-AC">Non-AC</option>
+            </select>
+
+            <select id="propertyFood">
+                <option value="Yes">Food Included</option>
+                <option value="No">Without Food</option>
+            </select>
+
+            <select id="propertyElectricity">
+                <option value="Yes">Electricity Included</option>
+                <option value="No">Electricity Extra</option>
+            </select>
+
+            <input id="totalRooms" type="number" min="1"
+                placeholder="Total Rooms" required>
+
+            <input id="vacantRooms" type="number" min="0"
+                placeholder="Vacant Rooms" required>
+
+            <input id="ownerContact" type="tel" maxlength="10"
+                placeholder="Owner Mobile Number" required>
+
+            <input id="propertyImage" type="url"
+                placeholder="Room Image URL (optional)">
+
+            <textarea id="propertyDescription"
+                placeholder="Describe your property..." required></textarea>
+
+            <button type="submit" class="primary-btn">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Publish Property
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="my-properties">
+        <h3>My Listed Properties</h3>
+        <div id="ownerProperties" class="owner-property-list"></div>
+    </div>
+
+</section>
+
+
+<!-- ROOM LISTING SECTION -->
+<section class="rooms-section" id="rooms">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">EXPLORE YOUR OPTIONS</span>
+            <h2>Find Your Perfect Room</h2>
+            <p>Explore affordable accommodation near your college.</p>
+        </div>
+
+        <span class="listing-count" id="resultCount">0 properties</span>
+    </div>
+
+
+    <!-- FILTERS -->
+    <div class="filter-panel">
+
+        <div class="filter-item">
+            <label>Property Type</label>
+            <select id="propertyTypeFilter" onchange="searchRooms()">
+                <option value="">All Properties</option>
+                <option value="PG">PG</option>
+                <option value="Hostel">Hostel</option>
+                <option value="2BHK Flat">2BHK Flat</option>
+                <option value="3BHK Flat">3BHK Flat</option>
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label>Room Type</label>
+            <select id="bedFilter" onchange="searchRooms()">
+                <option value="">All Types</option>
+                <option value="Single">Single Bed</option>
+                <option value="Double">Double Bed</option>
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label>Air Conditioning</label>
+            <select id="acFilter" onchange="searchRooms()">
+                <option value="">All</option>
+                <option value="AC">AC</option>
+                <option value="Non-AC">Non-AC</option>
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label>Food</label>
+            <select id="foodFilter" onchange="searchRooms()">
+                <option value="">All</option>
+                <option value="Yes">Included</option>
+                <option value="No">Not Included</option>
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label>Electricity</label>
+            <select id="electricityFilter" onchange="searchRooms()">
+                <option value="">All</option>
+                <option value="Yes">Included</option>
+                <option value="No">Extra</option>
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label>Availability</label>
+            <select id="availabilityFilter" onchange="searchRooms()">
+                <option value="">All</option>
+                <option value="Available">Vacant</option>
+                <option value="Full">Fully Occupied</option>
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label>Maximum Rent</label>
+            <input type="number" id="maxRent"
+                placeholder="₹ Maximum" min="0"
+                oninput="searchRooms()">
+        </div>
+
+        <button class="reset-btn" onclick="resetFilters()">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+        </button>
+
+    </div>
+
+
+    <!-- ROOM CARDS -->
+    <div class="room-grid" id="roomGrid"></div>
+
+</section>
+
+
+<!-- RESTAURANT AND DHABA DIRECTORY -->
+<section class="dining-section" id="dining">
+    <div class="dining-heading">
+        <div>
+            <span class="eyebrow">GOOD FOOD, CLOSE BY</span>
+            <h2>Find a Restaurant or Dhaba</h2>
+            <p>Browse nearby dhabas, restaurants and student-friendly meals.</p>
+        </div>
+        <a class="dining-link" href="dhaba.html">
+            Explore food options <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <a class="dining-preview" href="dhaba.html">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200"
+            alt="Fresh Punjabi meal served at a local dhaba" loading="lazy">
+        <span class="dining-preview-copy">
+            <strong>Something delicious is nearby.</strong>
+            <span>Explore parathas, thalis and local dhabas.</span>
+        </span>
+        <span class="dining-preview-arrow" aria-hidden="true">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </span>
+    </a>
+</section>
+
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+
+    <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900"
+            alt="Comfortable accommodation">
+    </div>
+
+    <div class="about-content">
+        <span class="eyebrow">WHY STAYFINDER?</span>
+
+        <h2>Finding Your Home Away From Home.</h2>
+
+        <p>
+            StayFinder makes it easier for students to discover
+            comfortable, affordable and convenient accommodation
+            near their universities.
+        </p>
+
+        <div class="about-points">
+            <p><i class="fa-solid fa-circle-check"></i> Easy room searching</p>
+            <p><i class="fa-solid fa-circle-check"></i> Compare monthly rent</p>
+            <p><i class="fa-solid fa-circle-check"></i> Direct owner contact</p>
+            <p><i class="fa-solid fa-circle-check"></i> Room-wise student reviews</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEEDBACK SECTION -->
+<section class="feedback-section" id="feedback">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">STUDENT REVIEWS</span>
+            <h2>Share Your Experience</h2>
+            <p>Your feedback helps other students choose better rooms.</p>
+        </div>
+    </div>
+
+    <form id="feedbackForm" class="feedback-form">
+
+        <input type="text" id="feedbackName"
+            placeholder="Your Name" required>
+
+        <select id="feedbackRoom" required>
+            <option value="">Select Room to Rate</option>
+        </select>
+
+        <label>Give Your Rating</label>
+
+        <div class="rating-picker" id="ratingPicker">
+            <button type="button" data-rating="1">★</button>
+            <button type="button" data-rating="2">★</button>
+            <button type="button" data-rating="3">★</button>
+            <button type="button" data-rating="4">★</button>
+            <button type="button" data-rating="5">★</button>
+        </div>
+
+        <input type="hidden" id="feedbackRating" required>
+
+        <textarea id="feedbackText"
+            placeholder="Write your experience..." required></textarea>
+
+        <button class="primary-btn" type="submit">
+            <i class="fa-solid fa-paper-plane"></i> Submit Feedback
+        </button>
+
+    </form>
+
+    <div class="feedback-list" id="feedbackList"></div>
+
+</section>
+
+
+<!-- IMAGE VIEWER -->
+<div class="image-modal hidden" id="imageModal"
+    onclick="closeImage()">
+
+    <button class="image-close"
+        onclick="closeImage()">×</button>
+
+    <img id="largeImage" src="" alt="Room Image"
+        onclick="event.stopPropagation()">
+
+    <p id="imageCaption"></p>
+
+</div>
+
+
+<!-- TOAST MESSAGE -->
+<div class="toast" id="toast"></div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <a href="#home" class="logo">
+        <i class="fa-solid fa-house-user"></i>
+        Homiego </span>
+    </a>
+
+    <p>Your comfort, our priority.</p>
+
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#rooms">Find Rooms</a>
+        <a href="#feedback">Feedback</a>
+    </div>
+
+    <p class="copyright">
+        © 2026 Homiego. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="api.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#183a2d">
+    <title>Restaurants &amp; Dhabas Near Campus | Homiego</title>
+    <link rel="stylesheet" href="dhaba.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="dining-nav">
+        <a class="brand" href="html1.html#home"><i class="fa-solid fa-house-user"></i> Homiego</a>
+        <nav aria-label="Main navigation">
+            <a href="html1.html#rooms">Find a home</a>
+            <a href="html1.html#dining" aria-current="page">Dining near campus</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dining-hero">
+            <div class="hero-copy">
+                <span class="kicker">YOUR CAMPUS, YOUR CRAVINGS</span>
+                <h1>Good food is<br>never far away.</h1>
+                <p>Find Punjabi favorites, neighborhood restaurants and dhabas around student areas.</p>
+                <a class="hero-button" href="#food-options">See food options <i class="fa-solid fa-arrow-down"></i></a>
+            </div>
+            <div class="hero-photo" role="img" aria-label="A table of freshly prepared Punjabi dishes"></div>
+        </section>
+
+        <section class="food-section" id="food-options">
+            <div class="section-heading">
+                <div>
+                    <span class="kicker">A LITTLE SOMETHING DELICIOUS</span>
+                    <h2>What sounds good?</h2>
+                    <p>Pick a craving to find nearby places serving it.</p>
+                </div>
+                <label class="search-box">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="foodSearch" placeholder="Search dishes or area" aria-label="Search dishes or area">
+                </label>
+            </div>
+
+            <div class="food-tools">
+                <div class="food-filters" role="group" aria-label="Filter food options">
+                    <button class="food-filter active" type="button" data-filter="all" aria-pressed="true">All options</button>
+                    <button class="food-filter" type="button" data-filter="dhaba" aria-pressed="false">Dhaba favorites</button>
+                    <button class="food-filter" type="button" data-filter="restaurant" aria-pressed="false">Restaurant picks</button>
+                </div>
+                <span class="food-count" id="foodCount" aria-live="polite">4 food options</span>
+            </div>
+
+            <div class="food-grid" id="foodGrid">
+                <article class="food-card" data-category="dhaba" data-search="amritsari kulcha chole panjab university chandigarh dhaba">
+                    <a class="food-photo" href="https://www.google.com/maps/search/?api=1&amp;query=Amritsari+kulcha+dhaba+near+Panjab+University+Chandigarh" target="_blank" rel="noopener noreferrer" aria-label="Find Amritsari kulcha near Panjab University">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=900" alt="Golden stuffed Indian flatbread" loading="lazy">
+                        <span class="food-label">DHABA FAVORITE</span>
+                    </a>
+                    <div class="food-info">
+                        <span class="food-area">PANJAB UNIVERSITY</span>
+                        <h3>Amritsari Kulcha</h3>
+                        <p>Golden, crisp kulcha with chole and tangy chutney.</p>
+                        <a class="food-link" href="https://www.google.com/maps/search/?api=1&amp;query=Amritsari+kulcha+dhaba+near+Panjab+University+Chandigarh" target="_blank" rel="noopener noreferrer">Find it nearby <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+
+                <article class="food-card" data-category="restaurant" data-search="chole bhature sector 15 chandigarh restaurant north indian">
+                    <a class="food-photo" href="https://www.google.com/maps/search/?api=1&amp;query=chole+bhature+restaurants+near+Sector+15+Chandigarh" target="_blank" rel="noopener noreferrer" aria-label="Find chole bhature near Sector 15 in Chandigarh">
+                        <img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=900" alt="Chole served with freshly fried bhature" loading="lazy">
+                        <span class="food-label">RESTAURANT PICK</span>
+                    </a>
+                    <div class="food-info">
+                        <span class="food-area">SECTOR 15, CHANDIGARH</span>
+                        <h3>Chole Bhature</h3>
+                        <p>A hearty classic for a big lunch or a weekend treat.</p>
+                        <a class="food-link" href="https://www.google.com/maps/search/?api=1&amp;query=chole+bhature+restaurants+near+Sector+15+Chandigarh" target="_blank" rel="noopener noreferrer">Find it nearby <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+
+                <article class="food-card" data-category="dhaba" data-search="paneer paratha phagwara lovely professional university dhaba breakfast">
+                    <a class="food-photo" href="https://www.google.com/maps/search/?api=1&amp;query=paneer+paratha+dhaba+near+Lovely+Professional+University+Phagwara" target="_blank" rel="noopener noreferrer" aria-label="Find paneer paratha near Lovely Professional University">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=900" alt="Punjabi curry and bread served hot" loading="lazy">
+                        <span class="food-label">DHABA FAVORITE</span>
+                    </a>
+                    <div class="food-info">
+                        <span class="food-area">PHAGWARA</span>
+                        <h3>Paneer Paratha</h3>
+                        <p>Warm stuffed paratha with curd, pickle and butter.</p>
+                        <a class="food-link" href="https://www.google.com/maps/search/?api=1&amp;query=paneer+paratha+dhaba+near+Lovely+Professional+University+Phagwara" target="_blank" rel="noopener noreferrer">Find it nearby <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+
+                <article class="food-card" data-category="restaurant" data-search="punjabi thali mohali sector 70 restaurant vegetarian meal">
+                    <a class="food-photo" href="https://www.google.com/maps/search/?api=1&amp;query=Punjabi+thali+restaurants+near+Sector+70+Mohali" target="_blank" rel="noopener noreferrer" aria-label="Find Punjabi thali near Sector 70 in Mohali">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=900" alt="A colorful Punjabi thali with several dishes" loading="lazy">
+                        <span class="food-label">RESTAURANT PICK</span>
+                    </a>
+                    <div class="food-info">
+                        <span class="food-area">MOHALI</span>
+                        <h3>Punjabi Thali</h3>
+                        <p>A little bit of everything: dal, seasonal sabzi, roti and rice.</p>
+                        <a class="food-link" href="https://www.google.com/maps/search/?api=1&amp;query=Punjabi+thali+restaurants+near+Sector+70+Mohali" target="_blank" rel="noopener noreferrer">Find it nearby <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+            </div>
+            <p class="empty-message" id="emptyMessage" hidden>No dishes match that search. Try another dish or area.</p>
+        </section>
+
+        <section class="dhaba-section">
+            <div>
+                <span class="kicker">EAT LOCAL</span>
+                <h2>Looking for a dhaba?</h2>
+                <p>Open live map results for dhabas and restaurants close to campus.</p>
+            </div>
+            <a class="area-link" href="https://www.google.com/maps/search/?api=1&amp;query=Punjabi+dhaba+near+Panjab+University+Chandigarh" target="_blank" rel="noopener noreferrer">Dhabas near Panjab University <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a class="area-link" href="https://www.google.com/maps/search/?api=1&amp;query=dhaba+near+Lovely+Professional+University+Phagwara" target="_blank" rel="noopener noreferrer">Dhabas near LPU, Phagwara <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </section>
+    </main>
+
+    <footer class="dining-footer">
+        <a href="html1.html#home"><i class="fa-solid fa-arrow-left"></i> Back to Homiego</a>
+        <span>Homiego | Find your place, find your people.</span>
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll(".food-filter");
+        const foodCards = [...document.querySelectorAll(".food-card")];
+        const searchInput = document.getElementById("foodSearch");
+        let activeFilter = "all";
+
+        function filterFood() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            foodCards.forEach(card => {
+                const matchesType = activeFilter === "all" || card.dataset.category === activeFilter;
+                const matchesSearch = !query || card.dataset.search.includes(query);
+                const visible = matchesType && matchesSearch;
+                card.hidden = !visible;
+                if (visible) visibleCount += 1;
+            });
+
+            document.getElementById("foodCount").textContent =
+                visibleCount + (visibleCount === 1 ? " food option" : " food options");
+            document.getElementById("emptyMessage").hidden = visibleCount > 0;
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                activeFilter = button.dataset.filter;
+                filterButtons.forEach(item => {
+                    const active = item === button;
+                    item.classList.toggle("active", active);
+                    item.setAttribute("aria-pressed", String(active));
+                });
+                filterFood();
+            });
+        });
+
+        searchInput.addEventListener("input", filterFood);
+    </script>
+</body>
+</html>
